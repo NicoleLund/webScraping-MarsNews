@@ -21,11 +21,96 @@
   </head>
 
   <body>
-    <div class="jumbotron">
-        <h1 class="display-4">Mission to Mars</h1>
-        <p class="lead">Your one stop shop for the latest news on Mars exploration.</p>
-        <hr class="my-4">
-        <p>Collect the latest news now.</p>
-        <a class="btn btn-primary btn-lg" href="/scrape" role="button">Get the latest news</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-1" style="background-color:white;">
+            </div>
+            <div class="col-lg-10" style="background-color:lightgray;">
+                <div class="jumbotron">
+                    <br>
+                    <h1>Mission to Mars</h1>
+                    <p>Your one stop shop for the latest news on Mars exploration.</p>
+                    <hr>
+                    <a class="btn btn-secondary btn-md" href="/scrape" role="button">Get the latest news</a>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <div class="col-lg-1" style="background-color:white;">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1" style="background-color:white;"></div>
+
+            <div class="col-lg-10" style="background-color:white;">
+                <br>
+                <h3>Latest NASA news</h3>
+                <h5>{{ mars_data.nasa_top_story.headline }}</h5>
+                <p>{{ mars_data.nasa_top_story.teaser }}</p>
+            </div>
+
+            <div class="col-lg-1" style="background-color:white;"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1" style="background-color:white;"></div>
+            
+            <div class="col-lg-6" style="background-color:white;">
+                <br>
+                <h3>Jet Propulsion Laboratory's Featured Image</h3>
+                <img src={{ mars_data.jpl_featured_img }}>
+                <br>
+            </div>
+            
+            <div class="col-lg-4" style="background-color:white;">
+                <br>
+                <h3>Mars Facts</h3>
+                {{ mars_data.facts_table_html }}
+                <br>
+            </div>
+
+            <div class="col-lg-1" style="background-color:white;"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1" style="background-color:white;"></div>
+
+            <div class="col-lg-10" style="background-color:white;">
+                <br>
+                <h3 class="text-center">Satellite views of Mars Hemispheres</h3>
+            </div>
+
+            <div class="col-lg-1" style="background-color:white;"></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-1" style="background-color:white;"></div>
+
+            <div class="col-lg-5" style="background-color:white;">
+                <div class="card">
+                    <img class="card-img-top" src="https://astrogeology.usgs.gov/cache/images/f5e372a36edfa389625da6d0cc25d905_cerberus_enhanced.tif_full.jpg">
+                    <div class="card-body">
+                      <h5 class="card-text">{{ mars_data.hemisphere_images[0].title }}</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-1" style="background-color:white;"></div>
+        </div>
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   </body>
