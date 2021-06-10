@@ -35,9 +35,9 @@ def nasa_news(browser):
     news_teaser = latest_container.find('div', class_='article_teaser_body').text
     nasa_news_headline = {'headline':news_headline,'teaser':news_teaser}
 
-    print('')
-    print('-------- NASA News Top Headline --------')
-    print(nasa_news_headline)
+    # print('')
+    # print('-------- NASA News Top Headline --------')
+    # print(nasa_news_headline)
 
     return nasa_news_headline
 
@@ -60,9 +60,9 @@ def jpl_feature(browser):
     # Final JPL Result
     featured_image_url = jpl_base_url + jpl_relative_url
     
-    print('')
-    print('-------- JPL Featured Image --------')
-    print(featured_image_url)
+    # print('')
+    # print('-------- JPL Featured Image --------')
+    # print(featured_image_url)
 
     return featured_image_url
 
@@ -78,10 +78,10 @@ def mars_facts(browser):
     # Clean up table
     facts_df = facts_df.rename(columns={0:'Description',1:'Value'})
     facts_df = facts_df.set_index('Description')
-    print('')
-    print('-------- Mars Facts Table --------')
-    print(facts_df)
-    print('')
+    # print('')
+    # print('-------- Mars Facts Table --------')
+    # print(facts_df)
+    # print('')
 
     # Final Mars Facts Result - Convert facts table to html string
     facts_html = facts_df.to_html()
@@ -139,10 +139,10 @@ def mars_hemispheres(browser):
         # Return to main page
         browser.visit(astropedia_url)
 
-    print('')
-    print('-------- Mars Hemisphere Images --------')
-    print(hemisphere_image_urls)
-    print('')
+    # print('')
+    # print('-------- Mars Hemisphere Images --------')
+    # print(hemisphere_image_urls)
+    # print('')
 
     return hemisphere_image_urls
 
@@ -167,12 +167,22 @@ def scrape():
     # Retrieve Mars Hemisphere Images
     hemisphere_image_links = mars_hemispheres(browser)
     
+    # Store all retrieved data within a single dictionary
+    mars_data = {\
+        'nasa_top_story':nasa_headline_teaser,\
+        'jpl_featured_img':jpl_image,\
+        'facts_table_html':facts_table,\
+        'hemisphere_images':hemisphere_image_links\
+        }
+
+    # print('')
+    # print('-------- Combined Mars Data --------')
+    # print(mars_data)
+
+    return(mars_data)
+
     # Close splinter browser
     browser.quit()
-
-
-
-
 
 if __name__ == "__main__":
    scrape() 
