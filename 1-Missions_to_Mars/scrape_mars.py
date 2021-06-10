@@ -29,7 +29,7 @@ def nasa_news(browser):
 
     # Collect the latest news headline and paragraph
     latest_container = nasa_soup.find('div', class_='image_and_description_container')
-
+    
     # Final Nasa Result
     news_headline = latest_container.find('div', class_='content_title').find('a').text
     news_teaser = latest_container.find('div', class_='article_teaser_body').text
@@ -93,7 +93,9 @@ def mars_hemispheres(browser):
     ####################################################
 
     # Access Astrogeology site
-    astropedia_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    astropedia_base_url = 'https://astrogeology.usgs.gov'
+    astropedia_relative_url = '/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    astropedia_url = astropedia_base_url + astropedia_relative_url
     browser.visit(astropedia_url)
     astropedia_html = browser.html
     astropedia_soup = BeautifulSoup(astropedia_html, 'html.parser')
@@ -121,20 +123,10 @@ def mars_hemispheres(browser):
         hemisphere_html = browser.html
         hemisphere_soup = BeautifulSoup(hemisphere_html, 'html.parser')
 
-        downloads = hemisphere_soup.find('div', class_='downloads')
-        links = downloads.find_all('a')
-        for link_num in range(0,3):
-            try:
-                link_title = links[link_num].text
-                if link_title == 'Original':
-                    image_link = links[link_num]['href']
-                    hemisphere_image_urls.append(\
-                        {"title":hemisphere,"img_url":image_link})
-            except IndexError:
-                if hemisphere in [d['title'] for d in hemisphere_image_urls]:
-                    print(f'"{hemisphere}" Image Link Found')
-                else:
-                    print(f'"{hemisphere}" not found')
+        hemisphere_image = hemisphere_soup.find('img', class_='wide-image')['src']
+        image_link = astropedia_base_url + hemisphere_image
+        hemisphere_image_urls.append(\
+            {"title":hemisphere,"img_url":image_link})
 
         # Return to main page
         browser.visit(astropedia_url)
