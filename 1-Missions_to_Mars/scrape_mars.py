@@ -12,6 +12,7 @@
 
 # Import Dependencies
 import pandas as pd 
+import time
 from splinter import Browser
 from bs4 import BeautifulSoup
 from webdriver_manager.chrome import ChromeDriverManager
@@ -26,6 +27,7 @@ def nasa_news(browser):
     browser.visit(nasa_url)
     nasa_html = browser.html
     nasa_soup = BeautifulSoup(nasa_html, 'html.parser')
+    time.sleep(1.5)
 
     # Collect the latest news headline and paragraph
     latest_container = nasa_soup.find('div', class_='image_and_description_container')
@@ -52,6 +54,7 @@ def jpl_feature(browser):
     browser.visit(jpl_url)
     jpl_html = browser.html
     jpl_soup = BeautifulSoup(jpl_html, 'html.parser')
+    # time.sleep(1)
 
     # Collect the full url path for the full size featured image
     featured = jpl_soup.find('div', class_='floating_text_area')
@@ -84,7 +87,7 @@ def mars_facts(browser):
     # print('')
 
     # Final Mars Facts Result - Convert facts table to html string
-    facts_html = facts_df.to_html()
+    facts_html = facts_df.to_html(justify='left',border=0,header=False)
     return facts_html
 
 def mars_hemispheres(browser):
@@ -99,6 +102,7 @@ def mars_hemispheres(browser):
     browser.visit(astropedia_url)
     astropedia_html = browser.html
     astropedia_soup = BeautifulSoup(astropedia_html, 'html.parser')
+    # time.sleep(1)
 
     # Collect hemisphere titles
     hemisphere_titles = []
@@ -122,6 +126,7 @@ def mars_hemispheres(browser):
         # Collect URL for full size image
         hemisphere_html = browser.html
         hemisphere_soup = BeautifulSoup(hemisphere_html, 'html.parser')
+        # time.sleep(1)
 
         hemisphere_image = hemisphere_soup.find('img', class_='wide-image')['src']
         image_link = astropedia_base_url + hemisphere_image
