@@ -78,16 +78,17 @@ def mars_facts(browser):
     facts_url = 'https://space-facts.com/mars/'
     facts_df = pd.read_html(facts_url)[0]
 
-    # Clean up table
-    facts_df = facts_df.rename(columns={0:'Description',1:'Value'})
-    facts_df = facts_df.set_index('Description')
     # print('')
     # print('-------- Mars Facts Table --------')
     # print(facts_df)
     # print('')
 
     # Final Mars Facts Result - Convert facts table to html string
-    facts_html = facts_df.to_html(justify='left',border=0,header=False)
+    # Note from Nicole Lund - I chose to remove all formatting from
+    # the table as an esthetic choice because the Description column
+    # fields include a : at the end.
+    facts_html = facts_df.to_html(justify='left',border=0,header=False,index=False)
+
     return facts_html
 
 def mars_hemispheres(browser):
