@@ -1,6 +1,6 @@
 # web-scraping-challenge
 
-UofA Data Analytics Bootcamp Homework Assignment 12-Web Scraping
+UofA Data Analytics Bootcamp Homework Assignment 12-Web Scraping and Document Databases
 
 ### Assignment Description
 
