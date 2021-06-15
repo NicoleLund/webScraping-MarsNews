@@ -27,6 +27,8 @@ def nasa_news(browser):
     browser.visit(nasa_url)
     nasa_html = browser.html
     nasa_soup = BeautifulSoup(nasa_html, 'html.parser')
+    
+    # Allow webpage to load fully
     time.sleep(1.5)
 
     # Collect the latest news headline and paragraph
@@ -54,6 +56,7 @@ def jpl_feature(browser):
     browser.visit(jpl_url)
     jpl_html = browser.html
     jpl_soup = BeautifulSoup(jpl_html, 'html.parser')
+    # Allow webpage to load fully - Has not been necessary
     # time.sleep(1)
 
     # Collect the full url path for the full size featured image
@@ -103,6 +106,8 @@ def mars_hemispheres(browser):
     browser.visit(astropedia_url)
     astropedia_html = browser.html
     astropedia_soup = BeautifulSoup(astropedia_html, 'html.parser')
+    
+    # Allow webpage to load fully - Has not been necessary
     # time.sleep(1)
 
     # Collect hemisphere titles
@@ -127,6 +132,7 @@ def mars_hemispheres(browser):
         # Collect URL for full size image
         hemisphere_html = browser.html
         hemisphere_soup = BeautifulSoup(hemisphere_html, 'html.parser')
+        # Allow webpage to load fully - Has not been necessary
         # time.sleep(1)
 
         hemisphere_image = hemisphere_soup.find('img', class_='wide-image')['src']
@@ -177,10 +183,11 @@ def scrape():
     # print('-------- Combined Mars Data --------')
     # print(mars_data)
 
-    return(mars_data)
-
     # Close splinter browser
     browser.quit()
+
+    return(mars_data)
+
 
 if __name__ == "__main__":
    scrape() 
