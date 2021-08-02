@@ -1,4 +1,4 @@
-# web-scraping-challenge
+# webScraping-MarsNews
 
 UofA Data Analytics Bootcamp Homework Assignment 12-Web Scraping and Document Databases
 
